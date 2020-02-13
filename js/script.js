@@ -13,40 +13,68 @@ project 1 - A Random Quote Generator
 
 var quotes = [
   {
-    quote: "",
-    source: ""
+    quote: "The modern computer hovers between the obsolescent and the nonexistent.",
+    source: "Sydney Brenner"
   }, 
   {
-    quote: "",
-    source: "",
-    year:""
+    quote: "There's a lot that can be done for people who are using technology in a better way.",
+    source: "Bill Gates",
+    year:"2019"
   }, 
   {
-    quote: "",
-    source: "",
-    citation:""
+    quote: "First, solve the problem. Then, write the code.",
+    source: "John Johnson",
+    citation:"Book of Random Things, 2020",
+    tag:"Programming"
   }, 
   {
-    quote: "",
-    source: ""
+    quote: "Users truly don’t know what they want in a program until they use it.",
+    source: "Unknown"
   }, 
   {
-    quote: "",
-    source: ""
+    quote: "Technology makes it possible for people to gain control over everything, except over technology.",
+    source: "John Tudor"
+  },
+  {
+    quote: "The technologies which have had the most profound effects on human life are usually simple.",
+    source: "Freeman Dyson",
+    tag:"Philosophy"
+  },
+  {
+    quote: "Part of the inhumanity of the computer is that, once it is competently programmed and working smoothly, it is completely honest.",
+    source: "Isaac Asimov"
   }
 ]; 
-
-console.log(quotes);
 
 /***
  * `getRandomQuote` function
 ***/
 
-
+function getRandomQuote() {
+  var randomNumber = Math.floor(Math.random() * quotes.length);
+  return quotes[randomNumber];
+}
 
 /***
  * `printQuote` function
 ***/
+
+function printQuote () {
+  var randomQuoteObject = getRandomQuote();
+  console.log(randomQuoteObject);
+  var htmlString = '<p class="quote">' + randomQuoteObject.quote + '</p>' + '<p class="source">'+ randomQuoteObject.source ;
+  if (randomQuoteObject.citation) {
+    htmlString += '<span class="citation">' + randomQuoteObject.citation + '</span>';
+  }
+  if (randomQuoteObject.year) {
+    htmlString += '<span class="year">' + randomQuoteObject.year + '</span>';
+  }
+  if (randomQuoteObject.tag) {
+    htmlString += ' <span class="tag">(' + randomQuoteObject.tag + ')</span> ';
+  }
+  htmlString.concat('</p>');
+  return document.getElementById('quote-box').innerHTML = htmlString; 
+}
 
 
 
@@ -54,5 +82,4 @@ console.log(quotes);
  * click event listener for the print quote button
  * DO NOT CHANGE THE CODE BELOW!!
 ***/
-
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
