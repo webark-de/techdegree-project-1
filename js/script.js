@@ -3,14 +3,11 @@ Treehouse FSJS Techdegree:
 project 1 - A Random Quote Generator
 ******************************************/
 
-// For assistance: 
-  // Check the "Project Resources" section of the project instructions
-  // Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
+// Introduction: 
+// The code below is used to generate random quote every time the user clicks on the button "Show another quote"
 
-/*** 
- * `quotes` array 
-***/
 
+// Variable quotes is an array containing quote objects with diffeerent properties
 var quotes = [
   {
     quote: "The modern computer hovers between the obsolescent and the nonexistent.",
@@ -46,23 +43,25 @@ var quotes = [
   }
 ]; 
 
-/***
- * `getRandomQuote` function
-***/
-
+// Function which contains random quote from thee array quotes.
 function getRandomQuote() {
   var randomNumber = Math.floor(Math.random() * quotes.length);
   return quotes[randomNumber];
 }
 
-/***
- * `printQuote` function
-***/
+// Function which generates random color and updates the body background
+function getRandomColor() {
+  var color = '#' + Math.random().toString(16).slice(-6);
+  return document.body.style.backgroundColor = color;
+}
 
+//Function which is printing random quote. 
 function printQuote () {
   var randomQuoteObject = getRandomQuote();
-  console.log(randomQuoteObject);
+  //Storing the random quote object properties in the variable. 
   var htmlString = '<p class="quote">' + randomQuoteObject.quote + '</p>' + '<p class="source">'+ randomQuoteObject.source ;
+
+  //Checking if the quote has citation,year or tag. If yes, the propery values are added to the html string. 
   if (randomQuoteObject.citation) {
     htmlString += '<span class="citation">' + randomQuoteObject.citation + '</span>';
   }
@@ -73,9 +72,19 @@ function printQuote () {
     htmlString += ' <span class="tag">(' + randomQuoteObject.tag + ')</span> ';
   }
   htmlString.concat('</p>');
+
+  //Calling the function to update th color together with th quot
+  getRandomColor();
+
+  //Showing the quote inside the quote-box element. 
   return document.getElementById('quote-box').innerHTML = htmlString; 
 }
 
+//Runing the printQuote function every 10 seconds
+function autoReload (){
+  setInterval(printQuote, 10000);
+}
+autoReload ();
 
 
 /***
