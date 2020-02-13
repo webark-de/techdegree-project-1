@@ -26,7 +26,8 @@ var quotes = [
   }, 
   {
     quote: "Users truly don’t know what they want in a program until they use it.",
-    source: "Unknown"
+    source: "Unknown",
+    year:"2019"
   }, 
   {
     quote: "Technology makes it possible for people to gain control over everything, except over technology.",
@@ -85,7 +86,6 @@ function autoReload (){
   setInterval(printQuote, 10000);
 }
 autoReload ();
-
 
 /***
  * click event listener for the print quote button
